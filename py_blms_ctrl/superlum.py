@@ -9,6 +9,9 @@ A201 = low, off 1 = 1"""
 
 import re, serial, io
 
+import logging
+logger = logging.getLogger(__name__)
+
 BAUD_RATE = 57600
 TIMEOUT = 1
 
@@ -83,6 +86,8 @@ class Superlum:
         self.blms_io = io.TextIOWrapper(io.BufferedRWPair(self.blms, self.blms))
         
     def switch_power(self):
+
+        logger.info("Superlum switch power")
     
         if self.blms_io == None:
             raise NameError('Use connect() to connect to the device before the query.')
@@ -92,6 +97,8 @@ class Superlum:
         return self.read_response()
     
     def switch_hi_mode(self):
+
+        logger.info("Superlum switch HI mode")
         
         if self.blms_io == None:
             raise NameError('Use connect() to connect to the device before the query.')
